@@ -6,7 +6,7 @@ import heapq, math
 Given an adjacency list, return the sizes of the connected components sorted largest.
 to smallest.
 '''
-def size_connected_components( adjacency: list[set[int]]):
+def size_connected_components(adjacency: list[set[int]]):
     n = len(adjacency)
     disjointSet = DisjointSet(n)
 
@@ -64,10 +64,11 @@ def distance(a: Coordinate, b: Coordinate) -> float:
 
     return ((ax - bx) ** 2 + (ay - by) ** 2 + (az - bz) ** 2) ** .5
 
-test_adjacency = connect_closest(10, read_input("input1"))
-test_largest = size_connected_components(test_adjacency)
-assert math.prod(test_largest[:3]) == 40, test_largest
+if __name__ == '__main__':
+    test_adjacency = connect_closest(10, read_input("input1"))
+    test_largest = size_connected_components(test_adjacency)
+    assert math.prod(test_largest[:3]) == 40, test_largest
 
-adjacency = connect_closest(1000, read_input())
-largest = size_connected_components(adjacency)
-print(math.prod(largest[:3]))
+    adjacency = connect_closest(1000, read_input())
+    largest = size_connected_components(adjacency)
+    print(math.prod(largest[:3]))

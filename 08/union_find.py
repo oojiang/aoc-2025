@@ -2,6 +2,7 @@ class DisjointSet:
     def __init__(self, n):
         self.parent = list(range(n))
         self.size = [1] * n
+        self.num_components = n
 
     def find(self, x):
         if self.parent[x] != x:
@@ -20,3 +21,4 @@ class DisjointSet:
 
         self.parent[parentB] = parentA
         self.size[parentA] += self.size[parentB]
+        self.num_components -= 1
