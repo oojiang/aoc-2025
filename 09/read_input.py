@@ -1,9 +1,9 @@
-type Coordinate = tuple[int, int]
+type Point = tuple[float, float]
 
-def read_input(filename = "input") -> list[Coordinate]:
-    coordinates = []
+def read_input(filename = "input") -> list[Point]:
+    points = []
     with open(filename, 'r') as file:
         for line in file:
-            coor = tuple(int(s) for s in line.split(','))
-            coordinates.append(coor)
-    return coordinates
+            p = tuple(int(s) for s in line.split(','))
+            points.append(p)
+    return points
