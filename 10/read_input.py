@@ -1,8 +1,9 @@
 import re
 
+type Joltage = tuple[int, ...]
 type Indicators = tuple[bool, ...]
 type Button = set[int]
-type Machine = tuple[Indicators, list[Button]]
+type Machine = tuple[Indicators, list[Button], Joltages]
 
 def read_input(filename = "input") -> list[Machine]:
     machines = []
@@ -13,8 +14,8 @@ def read_input(filename = "input") -> list[Machine]:
 
 def machine(s: str) -> Machine:
     pattern = r"\[(.*)\] (.*) {(.*)}"
-    indicator_s, buttons_s, _ = re.match(pattern, s).groups()
-    return (indicator(indicator_s), buttons(buttons_s))
+    indicator_s, buttons_s, joltage_s = re.match(pattern, s).groups()
+    return (indicator(indicator_s), buttons(buttons_s), joltage(joltage_s))
 
 def indicator(s: str) -> Indicators:
     return tuple(c == '#' for c in s)
@@ -25,3 +26,6 @@ def buttons(s: str) -> list[Button]:
 
 def button(s: str) -> Button:
     return set(int(ss) for ss in s.split(','))
+
+def joltage(s: str) -> Joltage:
+    return tuple(int(ss) for ss in s.split(','))

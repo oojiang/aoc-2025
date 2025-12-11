@@ -2,7 +2,7 @@ from read_input import Indicators, Button, Machine, read_input
 from collections import deque
 
 def fewest_presses(machine: Machine) -> int:
-    goal, buttons = machine
+    goal, buttons, _ = machine
 
     start = tuple(False for _ in goal)
     queue = deque([(start, 0)]) # each item is (indicators, count)
