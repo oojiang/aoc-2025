@@ -10,10 +10,11 @@ Given Ax = b, solve for x.
 @param b - The constant vector in Ax = b.
 @param is_free - is_free[c] is True iff column c of A is a free column.
 
-@return x - Mutated x with the pivot entries filled in.
+@return x - x, but with the pivot entries filled in.
 '''
 def solve(A: Matrix, x: Vector, b: Vector, is_free) -> Vector:
     ROWS, COLS = len(A), len(A[0])
+    x = list(x)
     assert len(x) == len(is_free) == COLS
     assert len(b) == ROWS
 
@@ -72,7 +73,7 @@ def get_rref(A: Matrix) -> tuple[Matrix, list[bool]]:
     ROWS, COLS = len(A), len(A[0])
     is_free = [False] * COLS
     pivot_row = 0
-    for pivot_col in range(COLS):
+    for pivot_col in range(COLS - 1): # COLS - 1 because the last column is b.
         # Find the first row with an entry in the pivot column.
         #   Then, rearrange the rows to maintain the "staircase".
         for r in range(pivot_row, ROWS):
